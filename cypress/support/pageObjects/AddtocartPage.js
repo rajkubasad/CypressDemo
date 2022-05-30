@@ -16,7 +16,7 @@ class AddtocartPage
     }
     getaddTocart()
     {
-        return cy.get('#a-autoid-0-announce')
+        return cy.get('#add-to-cart-button')
     }
     getaddTocartValidation()
     {

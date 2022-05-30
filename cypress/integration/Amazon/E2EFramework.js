@@ -6,26 +6,23 @@ var UserData =require('../../data/userData')
 
 
 describe("Amazon Testing ",function(){
-
     beforeEach(function(){
         const signinPage=new SigninPage()
-        cy.visit(Cypress.env('url'))
+         cy.visit(Cypress.env('url'))
          signinPage.getsignin().eq(1).click()
          signinPage.getInput().type(UserData.username)
          signinPage.getContinue().click()
          signinPage.getPassword().type(UserData.password)
          signinPage.getSubmit().click({ force: true })
          signinPage.getValidation().contains(UserData.signinvalidation)
-         cy.screenshot()
-    })
+     })
      it("searching order and adding to cart",function()
      {
         const addtocartPage=new AddtocartPage()
         addtocartPage.getSearchbox().type(UserData.searchiteam)
         addtocartPage.getSearchclick().click()
         addtocartPage.getremoveattr().eq(0).invoke('removeAttr','target').click()
-        addtocartPage.getaddTocart().click({force:true})
-      //  addtocartPage.getaddTocartValidation().contains(UserData.cartvalidation)
+        addtocartPage.getaddTocart().click()
     })
 
     it('procede to checkout',function(){
@@ -33,6 +30,5 @@ describe("Amazon Testing ",function(){
         procedetobuypage.getcheckoutbtnclick().click()
         procedetobuypage.getProccedTocheckout().click()
         procedetobuypage.getcheckoutValidation().contains(UserData.deliveryaddress)
-        procedetobuypage.getRadiobtn().eq(1).check().should('be.checked')
     }) 
 })
